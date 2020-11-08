@@ -4,15 +4,19 @@ import NavigationService from '../../services/NavigationService';
 import { screens } from '../screens';
 import s from "./style";
 
-function HomeScreen() {
+function BrowseScreen() {
     return (
         <View style={s.container}>
-            Home
+            Browse
             <Button onPress={()=>{
                 NavigationService.navigane(screens.Login)
             }} title="Go to Login"></Button>
-        </View>    
+            <Button onPress={()=>{
+                NavigationService.navigane(screens.CreatePost)
+            }} title="Create post"></Button>
+            
+        </View>
     )
 }
 
-export  default HomeScreen;
+export  default BrowseScreen;

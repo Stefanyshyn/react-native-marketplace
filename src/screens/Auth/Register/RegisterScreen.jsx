@@ -7,7 +7,7 @@ import s from "./style";
 function HomeScreen() {
     return (
         <View style={s.container}>
-            register
+            Register
             <Button onPress={()=>{
                 NavigationService.navigane(screens.Login)
             }} title="Go to Login"></Button>

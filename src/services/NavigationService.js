@@ -1,4 +1,4 @@
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 class NavigationService {
     constructor(){
@@ -16,8 +16,11 @@ class NavigationService {
             params
         }))
     }
-    naviganeToLogin(){
-        this.navigane(root)
+    naviganeStack(routeName, params){
+        this._navigation.dispatch(StackActions.navigate({
+            routeName: routeName,
+            params
+        }))
     }
 }
 
