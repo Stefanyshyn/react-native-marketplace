@@ -1,10 +1,11 @@
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import BrowseScreen from '../screens/Browse/BrowseScreen';
+import BrowseNavigator from "./BrowseNavigator";
+import ProfileNavigator from "./ProfileNavigator";
 import {screens} from '../screens/screens';
 
 const AppNavigator = createBottomTabNavigator({
-    [screens.BrowseTab]: BrowseScreen,
-    ["Lol"]: BrowseScreen,
+    [screens.BrowseTab]: BrowseNavigator,
+    [screens.ProfileTab]: ProfileNavigator,
 });
 
 export default AppNavigator;

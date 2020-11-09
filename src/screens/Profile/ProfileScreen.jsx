@@ -1,11 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text,View } from 'react-native';
 import s from "./style";
 
 function ProfileScreen() {
     return (
         <View style={s.container}>
-            Profile
+               <Text>
+               Profile
+           </Text>  
         </View>    
     )
 }

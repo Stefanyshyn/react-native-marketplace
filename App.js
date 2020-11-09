@@ -3,6 +3,7 @@ import React from 'react';
 import Navigator from './src/navagation';
 import { StyleSheet, View } from 'react-native';
 
+
 export default function App() {
   return (
     <View style={styles.container}>

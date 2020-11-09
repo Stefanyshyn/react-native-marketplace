@@ -1,11 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Text,View } from 'react-native';
 import s from "./style";
 
 function CreatePostModal() {
     return (
         <View style={s.container}>
-            Create Post
+               <Text>
+               Create Post
+           </Text> 
         </View>
     )
 }
