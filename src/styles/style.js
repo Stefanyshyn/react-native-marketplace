@@ -7,6 +7,9 @@ const styles = StyleSheet.create({
     center:{
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    fontSize:{
+        fontSize: 14
     }
 })
 
