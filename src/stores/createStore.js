@@ -1,12 +1,12 @@
 import { createContext, useContext } from 'react';
 import RootStore from './RootStore';
 
-export const createStore = ()=>{
-    const root = RootStore.create({});
+export function createStore(){
+    const root = RootStore.create();
 
-    const persistor = createPersist(root);
+   // const persistor = createPersist(root);
 
-    persistor.rehydrate();
+    //persistor.rehydrate();
 
     return root;
 }

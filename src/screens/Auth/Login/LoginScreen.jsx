@@ -1,15 +1,25 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Text, TextInput, View, KeyboardAvoidingView, Keyboard } from 'react-native';
 import Touchable from '../../../components/Touchable/Touchable';
 import s from "./style";
+import {useStore} from '../../../stores/createStore';
+import NavigationService from '../../../services/NavigationService';
+import { alert } from '../../../utils/alert';
 
 function LoginScreen() {
+    const store = useStore();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
+    const handleLogin = useCallback(()=>{
+        
+        store.auth.loginFlow.run(email, password).then(()=>{
+            NavigationService.navigateToHome();
+        }).catch(err=> alert(err));
+
+    },[email, password])
+
     const [focusedInputs, setFocusedInputs] = useState({email: false, password: false});
-
-
 
     return (
         <KeyboardAvoidingView  keyboardVerticalOffset={-7000} behavior="padding" style={s.container}>
@@ -41,7 +51,7 @@ function LoginScreen() {
                     <Text style={s.bottomInfo}>Don’t have an account?</Text>
                         <Text  style={s.redirect}>{' REGISTER'}</Text>
                 </View>
-                    <Touchable style={s.button}>
+                <Touchable onPress={handleLogin} style={s.button}>
                         <Text style={s.btnText}>Login</Text>
                     </Touchable>
             </View>

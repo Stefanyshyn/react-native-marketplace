@@ -1,6 +1,6 @@
 import { getParent, getRoot, types } from "mobx-state-tree";
 
-export function asynModel (thunk, auto = true){
+export function asyncModel (thunk, auto = true){
     const model = types.model('AsyncModel', {
         isLoading: false, 
         isError: false,
@@ -17,9 +17,9 @@ export function asynModel (thunk, auto = true){
         },
         error(error){
             if(error.response)
-                store.errorMessage = error.response.data?.message || error.response.data?.error;
+                store.errorMessage = "" + (error.response.data?.message || error.response.data?.error);
             else
-                store.errorMessage = error;
+                store.errorMessage = "" + error;
 
             store.isError = true;
         },

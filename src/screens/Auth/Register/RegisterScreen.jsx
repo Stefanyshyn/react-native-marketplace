@@ -7,9 +7,9 @@ import s from "./style";
 function HomeScreen() {
     return (
         <View style={s.container}>
-               <Text>
-               Register
-           </Text> 
+            <Text>
+                Register
+            </Text> 
             <Button onPress={()=>{
                 NavigationService.navigane(screens.Login)
             }} title="Go to Login"></Button>

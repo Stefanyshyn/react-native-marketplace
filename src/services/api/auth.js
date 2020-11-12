@@ -1,15 +1,13 @@
 import axios from 'axios';
-
-import {
-  getToken,
-  setToken as storeToken,
-  removeToken,
-} from '../localStorage';
+import {API_URL} from '../../constants/url';
+import { tokenStore } from '../localStorage';
 
 const urls = {
-  register: '/api/auth/register',
-  login: '/api/auth/login',
+  register: `/auth/register`,
+  login: `/auth/login`,
 };
+
+axios.defaults.baseURL = API_URL;
 
 const auth = {
   _token: null,
@@ -18,24 +16,14 @@ const auth = {
     return !!this._token;
   },
 
-  init() {
-    try {
-      this._token = getToken();
+  async init() {
+      this._token = await tokenStore.getToken();
 
       this._setTokenToAxios(this._token);
-    } catch (err) {
-      alert(err);
-    }
   },
-  setToken(token) {
-    try {
-      storeToken(token);
 
-      this._token = token;
-      this._setTokenToAxios(token);
-    } catch (err) {
-      alert(err);
-    }
+  async setToken(token) {
+    await tokenStore.setToken(token);
   },
 
   async register(email, fullName, password) {
@@ -46,17 +34,14 @@ const auth = {
     });
   },
 
-  async login(email, password) {
-    return axios.post(urls.login, { email, password });
+  login(email, password) {
+    return axios.post(urls.login,
+    {email, password})
   },
 
   logout() {
     this._token = '';
-    try {
-      removeToken();
-    } catch (err) {
-      alert(err);
-    }
+    removeToken();
   },
 
   _setTokenToAxios(token) {

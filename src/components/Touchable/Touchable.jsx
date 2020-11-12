@@ -6,7 +6,6 @@ import style from '../../screens/Auth/Login/style';
 const isAndroid = Platform.OS === 'android'
 
 const Touchable = (props) => {
-    console.log(JSON.stringify(Object.keys(props)))
     if(isAndroid)
         return (
             <TouchableNativeFeedback {...props}>
