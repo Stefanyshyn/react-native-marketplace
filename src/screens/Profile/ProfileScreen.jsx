@@ -5,12 +5,17 @@ import s from "./style";
 import {useStore} from '../../stores/createStore';
 import { observer } from 'mobx-react';
 import {alert} from '../../utils/alert'
+import NavigationService from '../../services/NavigationService'
+import { screens } from '../screens';
+
 function ProfileScreen() {
     const store = useStore()
     const onLogout = useCallback(()=>{
-        store.auth.logoutFlow.run().then(()=>
-        console.log('logout')
-        ).catch(err=> alert(err))
+        store.auth.logoutFlow.run()
+        .then(()=>{
+            NavigationService.navigane(screens.Auth)
+        })
+        .catch(err=> alert(err))
     }, [])
     const {isLoggedIn} = store.auth;
     return (

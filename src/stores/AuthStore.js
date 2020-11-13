@@ -18,8 +18,10 @@ function login(email, password){
         let _email = 'testivan@q.q';
         let _password = '12345678';
         const {data} = await api.auth.login(_email, _password);
+
         await api.auth.setToken(data.token);
 
+        root.viewer.setViewer(data.user);
         store.setIsLoggedIn(true);
     }
 }
@@ -28,7 +30,7 @@ function logout(){
 
         await tokenStore.removeToken();
         store.setIsLoggedIn(false);
-        //root.viewer.setViewer(undefined);
+        root.viewer.setViewer(undefined);
     }
 }
 export default AuthStore;
