@@ -1,21 +1,28 @@
 import React, { useCallback } from 'react';
 import { Text,View } from 'react-native';
-import { Button } from 'react-native-paper';
+import Touchable from '../../components/Touchable/Touchable';
 import s from "./style";
-
+import {useStore} from '../../stores/createStore';
+import { observer } from 'mobx-react';
+import {alert} from '../../utils/alert'
 function ProfileScreen() {
-
+    const store = useStore()
     const onLogout = useCallback(()=>{
-        console.log('logout');
+        store.auth.logoutFlow.run().then(()=>
+        console.log('logout')
+        ).catch(err=> alert(err))
     }, [])
+    const {isLoggedIn} = store.auth;
     return (
         <View style={s.container}>
             <Text>
-                Profile
+                {`Profile ${isLoggedIn}`}
             </Text>
-            <Button onPress={onLogout} title="Logout"></Button>
+            <Touchable onPress={onLogout} style={s.button} > 
+                <Text  style={s.buttonTitle}>Logout</Text>
+            </Touchable>
         </View>    
     )
 }
 
-export  default ProfileScreen;
+export  default observer(ProfileScreen);

@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { ceil } from 'react-native-reanimated';
 import color from '../../../styles/color'
 export default StyleSheet.create({
     container: {
@@ -85,7 +84,6 @@ export default StyleSheet.create({
         alignItems:'center',
         backgroundColor: color.primary,
         borderRadius: 44,
-        overflow: 'hidden'
     },
     btnText:{
         color: color.white,

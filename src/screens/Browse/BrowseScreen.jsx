@@ -9,8 +9,8 @@ function BrowseScreen() {
         <View style={s.container}>
             
             <Text>
-            Browse
-           </Text> 
+                Browse
+            </Text> 
             <Button onPress={()=>{
                 NavigationService.navigane(screens.Login)
             }} title="Go to Login"></Button>

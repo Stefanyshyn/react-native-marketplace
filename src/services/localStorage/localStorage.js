@@ -13,9 +13,9 @@ export const getToken =  async ()=>{
     return token;
 }
 
-// export const removeToken = ()=>{
-//     return AsyncStorage.removeItem(NAMES.TOKEN);
-// }
+export const removeToken = async ()=>{
+    return await AsyncStorage.removeItem(NAMES.TOKEN);
+}
 
 export const setToken = async (token) => {
     let json = JSON.stringify(token);
