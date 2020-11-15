@@ -4,8 +4,8 @@ import {screens} from '../screens/screens';
 import AuthNavigator from './AuthNavigator'; 
 
 const AppNavigator = createSwitchNavigator({
-    [screens.MainApp]: AppTabNavigator,
     [screens.Auth]: AuthNavigator,
+    [screens.MainApp]: AppTabNavigator,
 });
 
 export default AppNavigator;

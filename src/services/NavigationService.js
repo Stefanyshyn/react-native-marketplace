@@ -11,7 +11,7 @@ class NavigationService {
             this._navigation = navigation;
     }
 
-    navigane(routeName, params){
+    navigate(routeName, params){
         this._navigation.dispatch(NavigationActions.navigate({
             routeName: routeName,
             params
@@ -19,10 +19,10 @@ class NavigationService {
     }
 
     navigateToHome(){
-        this.navigane(screens.MainApp)
+        this.navigate(screens.MainApp)
     }
 
-    naviganeStack(routeName, params){
+    navigateStack(routeName, params){
         this._navigation.dispatch(StackActions.navigate({
             routeName: routeName,
             params

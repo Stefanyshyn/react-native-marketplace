@@ -13,7 +13,7 @@ function ProfileScreen() {
     const onLogout = useCallback(()=>{
         store.auth.logoutFlow.run()
         .then(()=>{
-            NavigationService.navigane(screens.Auth)
+            NavigationService.navigate(screens.Auth)
         })
         .catch(err=> alert(err))
     }, [])

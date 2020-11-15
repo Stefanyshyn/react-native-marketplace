@@ -1,5 +1,5 @@
 import {types} from 'mobx-state-tree';
-import AuthStore from './AuthStore'
+import AuthStore from './Aurh/AuthStore'
 import ViewerStore from './ViewerStore'
 
 const RootStore = types.model("RootStore", {

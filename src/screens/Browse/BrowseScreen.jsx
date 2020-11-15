@@ -12,10 +12,10 @@ function BrowseScreen() {
                 Browse
             </Text> 
             <Button onPress={()=>{
-                NavigationService.navigane(screens.Login)
+                NavigationService.navigate(screens.Login)
             }} title="Go to Login"></Button>
             <Button onPress={()=>{
-                NavigationService.navigane(screens.CreatePost)
+                NavigationService.navigate(screens.CreatePost)
             }} title="Create post"></Button>
             
         </View>
