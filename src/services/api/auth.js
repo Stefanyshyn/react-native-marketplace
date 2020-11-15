@@ -26,7 +26,7 @@ const auth = {
     await tokenStore.setToken(token);
   },
 
-  async register(email, fullName, password) {
+  register(email, fullName, password) {
     return axios.post(urls.register, {
       email,
       fullName,

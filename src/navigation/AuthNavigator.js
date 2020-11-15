@@ -5,8 +5,8 @@ import {screens} from '../screens/screens';
 
 
 const AuthNavigator = createStackNavigator({
-    [screens.Login]: LoginScreen,
     [screens.Register]: RegisterScreen,
+    [screens.Login]: LoginScreen,
 });
 
 export default AuthNavigator;

@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { Text, View, KeyboardAvoidingView, Button } from 'react-native';
+import { Text, View, KeyboardAvoidingView } from 'react-native';
 import Touchable from '../../../components/Touchable/Touchable';
 import s from "../style";
 import NavigationService from '../../../services/NavigationService';

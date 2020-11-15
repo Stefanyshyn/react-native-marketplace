@@ -14,10 +14,9 @@ function RegisterFormContent({formik}) {
                 name="email"
                 label="Email"
                 placeholder="example.@gmail.com"
-                onChange={(event)=>{
-                    registerStore.setEmail(event.target.value);
-                    event.target.name = "email";
-                    formik.handleChange("email");
+                onChangeText={(value)=>{
+                    registerStore.setEmail(value);
+                    formik.handleChange("email")(value);
                 }}
                 isError={!!(formik.touched.email && formik.errors.email)}
             />
@@ -30,10 +29,9 @@ function RegisterFormContent({formik}) {
                 name="fullname"
                 label="Full name"
                 placeholder="Tony Stark"
-                onChange={(event)=>{
-                    registerStore.setFullname(event.target.value);
-                    event.target.name = "fullname";
-                    formik.handleChange("fullname");
+                onChangeText={(value)=>{
+                    registerStore.setFullname(value);
+                    formik.handleChange("fullname")(value);
                 }}
                 isError={!!(formik.touched.fullname && formik.errors.fullname)}
             />
@@ -46,10 +44,9 @@ function RegisterFormContent({formik}) {
                 name="password"
                 label="Password"
                 secureTextEntry={true}
-                onChange={(event)=>{
-                    registerStore.setPassword(event.target.value);
-                    event.target.name = "password";
-                    formik.handleChange("password");
+                onChangeText={(value)=>{
+                    registerStore.setPassword(value);
+                    formik.handleChange("password")(value);
                 }}
                 isError={!!(formik.touched.password && formik.errors.password)}
             />
@@ -61,9 +58,9 @@ function RegisterFormContent({formik}) {
             <Input
                 name="repeatPassword"
                 label="Repeat password"
-                onChange={(event)=>{ 
-                    event.target.name = "repeatPassword";  
-                    formik.handleChange(event)
+                secureTextEntry={true}
+                onChangeText={(value)=>{
+                    formik.handleChange("repeatPassword")(value);
                 }}
                 isError={!!(formik.touched.repeatPassword && formik.errors.repeatPassword)}
             />

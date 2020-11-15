@@ -5,6 +5,7 @@ import {Formik} from 'formik';
 import { observer } from 'mobx-react';
 import FormWrapper from '../../components/FormWrapper';
 import RegisterFormContent from './RegisterFormContent';
+import NavigationService from '../../../../services/NavigationService';
 
 function RegisterFormik({blindSubmit}){
     const registerStore = useStore(store=> store.auth.register);
@@ -18,24 +19,23 @@ function RegisterFormik({blindSubmit}){
                 repeatPassword: '',
             }}
             enableReinitialize={true}
-            validationSchema={Y.object({
-                email: Y.string()
-                    .email('Invalid email address')
-                    .required('Enter email address'),
-                fullname: Y.string().required('Enter fullname'),
-                password: Y.string()
-                    .min(8, 'Password must contain at least 8 characters \t')
-                    .required('Enter password'),
-                repeatPassword: Y.string()
-                    .equalTo(Y.ref('password'), 'Passwords must match')
-                    .required('Enter repeat password'),
-            })}
+            // validationSchema={Y.object({
+            //     email: Y.string()
+            //         .email('Invalid email address')
+            //         .required('Enter email address'),
+            //     fullname: Y.string().required('Enter fullname'),
+            //     password: Y.string()
+            //         .min(8, 'Password must contain at least 8 characters \t')
+            //         .required('Enter password'),
+            //     repeatPassword: Y.string()
+            //         .equalTo(Y.ref('password'), 'Passwords must match')
+            //         .required('Enter repeat password'),
+            // })}
             onSubmit={(values, {setSubmitting })=>{
                 setSubmitting(false);
-                console.log('lol')
-                // store.auth.registerFlow.run().then(()=>{
-                //     NavigationService.navigateToHome();
-                // }).catch(err=> alert(err));
+                registerStore.registerFlow.run().then(()=>{
+                    NavigationService.navigateToHome();
+                }).catch(err=> alert(err));
             }}    
         >
             {(formik)=>(
