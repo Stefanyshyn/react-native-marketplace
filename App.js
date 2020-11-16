@@ -7,8 +7,7 @@ import {createStore, Provider} from './src/stores/createStore';
 const MSTStore =  createStore();
 
 export default function App() {
-  useEffect(async()=>{
-  })
+
   return (
     <Provider value={MSTStore}>
       <View style={styles.container}>

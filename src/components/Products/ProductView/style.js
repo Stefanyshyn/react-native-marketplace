@@ -2,13 +2,13 @@ import { StyleSheet } from 'react-native';
 import color from '../../../styles/color'
 export default StyleSheet.create({
     container: {
+        marginTop: 8,
         borderRadius: 10,
-        width:148,
+        width:"49.5%",
         height: 209,
         overflow: 'hidden',
     },
     photo:{
-        width:148,
         height: 148,
         backgroundColor: color.background
     },
@@ -20,7 +20,6 @@ export default StyleSheet.create({
         marginLeft: 12,
         marginRight: 8,
         marginTop: 8,
-        maxWidth: 128,
         whiteSpace:"nowrap",
         textOverflow: "ellipsis",
         overflow:"hidden",
