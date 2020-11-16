@@ -20,7 +20,7 @@ const LoginStore = types.model("LoginStore", {
     }
 }));
 
-function login(email, password){
+function login(){
     return async function loginFlow(flow, store, root){
         let _email = 'testivan@q.q';
         let _password = '12345678';

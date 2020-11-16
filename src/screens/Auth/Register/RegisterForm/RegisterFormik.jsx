@@ -19,18 +19,18 @@ function RegisterFormik({blindSubmit}){
                 repeatPassword: '',
             }}
             enableReinitialize={true}
-            // validationSchema={Y.object({
-            //     email: Y.string()
-            //         .email('Invalid email address')
-            //         .required('Enter email address'),
-            //     fullname: Y.string().required('Enter fullname'),
-            //     password: Y.string()
-            //         .min(8, 'Password must contain at least 8 characters \t')
-            //         .required('Enter password'),
-            //     repeatPassword: Y.string()
-            //         .equalTo(Y.ref('password'), 'Passwords must match')
-            //         .required('Enter repeat password'),
-            // })}
+            validationSchema={Y.object({
+                email: Y.string()
+                    .email('Invalid email address')
+                    .required('Enter email address'),
+                fullname: Y.string().required('Enter fullname'),
+                password: Y.string()
+                    .min(8, 'Password must contain at least 8 characters \t')
+                    .required('Enter password'),
+                repeatPassword: Y.string()
+                    .equalTo(Y.ref('password'), 'Passwords must match')
+                    .required('Enter repeat password'),
+            })}
             onSubmit={(values, {setSubmitting })=>{
                 setSubmitting(false);
                 registerStore.registerFlow.run().then(()=>{

@@ -15,8 +15,8 @@ export const PrivateNavigation = observer(function({component: Component, ...pro
 });
 
 const AppNavigator = createBottomTabNavigator({
-    [screens.ProfileTab]: ProfileNavigator,
     [screens.BrowseTab]: BrowseNavigator,
+    [screens.ProfileTab]: ProfileNavigator,
 });
 
 export default AppNavigator;

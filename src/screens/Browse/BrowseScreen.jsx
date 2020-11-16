@@ -3,6 +3,7 @@ import { Button, Text,View } from 'react-native';
 import NavigationService from '../../services/NavigationService';
 import { screens } from '../screens';
 import s from "./style";
+import ProductView from '../../components/Products/ProductView/ProductView';
 
 function BrowseScreen() {
     return (
@@ -11,6 +12,7 @@ function BrowseScreen() {
             <Text>
                 Browse
             </Text> 
+            <ProductView/>
             <Button onPress={()=>{
                 NavigationService.navigate(screens.Login)
             }} title="Go to Login"></Button>

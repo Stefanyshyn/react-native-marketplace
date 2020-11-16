@@ -27,10 +27,6 @@ const RegisterStore = types.model("RegisterStore", {
 
 function register(){
     return async function registerFlow(flow, store, root){
-        let _email = 'testivan@q.hkjuiyuykehkj';
-        let _fullname = 'lol';
-        let _password = '12345678';
-        
         const {data} = await api.auth.register(store.email, store.fullname, store.password);
 
         await api.auth.setToken(data.token);
