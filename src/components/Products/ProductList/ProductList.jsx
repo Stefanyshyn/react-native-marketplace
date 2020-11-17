@@ -3,15 +3,16 @@ import { FlatList, Text, View } from 'react-native';
 import ProductView from '../ProductView/ProductView'
 import s from './style'
 
-function ProductList({products}){
+function ProductList({products, ...props}){
     return (
         <FlatList
             style={s.container}
             columnWrapperStyle={s.columnWrapperStyle}
             data={products}
-            renderItem={ProductView}
+            renderItem={({item})=><ProductView item={item} rootProps={props} />}
             keyExtractor={(item)=>item.id}
             numColumns={2}
+
         />
     )
 }

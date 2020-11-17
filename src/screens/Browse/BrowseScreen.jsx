@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Button, Text,View } from 'react-native';
 import NavigationService from '../../services/NavigationService';
 import { screens } from '../screens';
@@ -23,9 +23,14 @@ const products = [];
 for(let i = 1; i < 11; ++i)
     products.push(product(i))
 function BrowseScreen() {
+
+    const onPressItem= useCallback((id)=>{
+        console.log(id);
+    },[]);
+
     return (
         <View style={s.container}>
-            <ProductList products={products}/>
+            <ProductList products={products} onPressItem={onPressItem} />
         </View>
     )
 }
