@@ -1,7 +1,7 @@
 import { setToken, getToken, removeToken } from './localStorage';
 
 export const tokenStore = {
-        getToken,
-        removeToken,
-        setToken,
-}
+    getToken,
+    removeToken,
+    setToken,
+};

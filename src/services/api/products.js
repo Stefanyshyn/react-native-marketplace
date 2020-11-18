@@ -3,8 +3,9 @@ import { API_URL } from '../../constants/url';
 import { tokenStore } from '../localStorage';
 
 const urls = {
-    register: `/auth/register`,
-    login: `/auth/login`,
+    fetchLatest: '/products/latest',
+    fetchLatestMore: ({ from, limit }) =>
+        `/products/latest?limit=${limit}&from=${from}`,
 };
 
 axios.defaults.baseURL = API_URL;
@@ -21,26 +22,17 @@ const auth = {
 
         this._setTokenToAxios(this._token);
     },
-
     async setToken(token) {
         await tokenStore.setToken(token);
     },
 
-    register(email, fullName, password) {
-        return axios.post(urls.register, {
-            email,
-            fullName,
-            password,
-        });
+    async fetchLatest() {
+        await this.init();
+        return axios.get(urls.fetchLatest);
     },
-
-    login(email, password) {
-        return axios.post(urls.login, { email, password });
-    },
-
-    logout() {
-        this._token = '';
-        removeToken();
+    async fetchLatestMore({ limit, from }) {
+        await this.init();
+        return axios.get(urls.fetchLatestMore({ limit, from }));
     },
 
     _setTokenToAxios(token) {

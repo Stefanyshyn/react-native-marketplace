@@ -1,12 +1,12 @@
 import React from 'react';
 import { View } from 'react-native';
-import {useStore} from '../../../../stores/createStore';
+import { useStore } from '../../../../stores/createStore';
 import Input from '../../components/Input/Input';
 import Box from '../../components/Box/Box';
 import { observer } from 'mobx-react';
 
-function RegisterFormContent({formik}) {
-    const registerStore = useStore(store=> store.auth.register);
+function RegisterFormContent({ formik }) {
+    const registerStore = useStore((store) => store.auth.register);
 
     return (
         <View onSubmit={formik.handleSubmit}>
@@ -14,62 +14,76 @@ function RegisterFormContent({formik}) {
                 name="email"
                 label="Email"
                 placeholder="example.@gmail.com"
-                onChangeText={(value)=>{
+                onChangeText={(value) => {
                     registerStore.setEmail(value);
-                    formik.handleChange("email")(value);
+                    formik.handleChange('email')(value);
                 }}
-                isError={!!(formik.touched.email && formik.errors.email)}
+                isError={
+                    !!(formik.touched.email && formik.errors.email)
+                }
             />
-            {
-                formik.touched.email 
-                && formik.errors.email 
-                && <Box text={formik.errors.email} type="error"/>
-            }
+            {formik.touched.email && formik.errors.email && (
+                <Box text={formik.errors.email} type="error" />
+            )}
             <Input
                 name="fullname"
                 label="Full name"
                 placeholder="Tony Stark"
-                onChangeText={(value)=>{
+                onChangeText={(value) => {
                     registerStore.setFullname(value);
-                    formik.handleChange("fullname")(value);
+                    formik.handleChange('fullname')(value);
                 }}
-                isError={!!(formik.touched.fullname && formik.errors.fullname)}
+                isError={
+                    !!(
+                        formik.touched.fullname &&
+                        formik.errors.fullname
+                    )
+                }
             />
-            {
-                formik.touched.fullname 
-                && formik.errors.fullname 
-                && <Box text={formik.errors.fullname} type="error"/>
-            }
+            {formik.touched.fullname && formik.errors.fullname && (
+                <Box text={formik.errors.fullname} type="error" />
+            )}
             <Input
                 name="password"
                 label="Password"
                 secureTextEntry={true}
-                onChangeText={(value)=>{
+                onChangeText={(value) => {
                     registerStore.setPassword(value);
-                    formik.handleChange("password")(value);
+                    formik.handleChange('password')(value);
                 }}
-                isError={!!(formik.touched.password && formik.errors.password)}
+                isError={
+                    !!(
+                        formik.touched.password &&
+                        formik.errors.password
+                    )
+                }
             />
-            {
-                formik.touched.password 
-                && formik.errors.password 
-                && <Box text={formik.errors.password} type="error"/>
-            }
+            {formik.touched.password && formik.errors.password && (
+                <Box text={formik.errors.password} type="error" />
+            )}
             <Input
                 name="repeatPassword"
                 label="Repeat password"
                 secureTextEntry={true}
-                onChangeText={(value)=>{
-                    formik.handleChange("repeatPassword")(value);
+                onChangeText={(value) => {
+                    formik.handleChange('repeatPassword')(value);
                 }}
-                isError={!!(formik.touched.repeatPassword && formik.errors.repeatPassword)}
+                isError={
+                    !!(
+                        formik.touched.repeatPassword &&
+                        formik.errors.repeatPassword
+                    )
+                }
             />
-            {
-                formik.touched.repeatPassword 
-                && formik.errors.repeatPassword 
-                && <Box text={formik.errors.repeatPassword} type="error"/>
-            }
+            {formik.touched.repeatPassword &&
+                formik.errors.repeatPassword && (
+                    <Box
+                        text={formik.errors.repeatPassword}
+                        type="error"
+                    />
+                )}
         </View>
-)}
+    );
+}
 
-export  default observer(RegisterFormContent);
+export default observer(RegisterFormContent);

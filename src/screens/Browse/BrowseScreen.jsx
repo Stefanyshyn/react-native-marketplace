@@ -1,38 +1,36 @@
-import React, { useCallback } from 'react';
-import { Button, Text,View } from 'react-native';
+import React, { useCallback, useEffect } from 'react';
+import { Text, View } from 'react-native';
 import NavigationService from '../../services/NavigationService';
 import { screens } from '../screens';
-import s from "./style";
+import s from './style';
 import ProductList from '../../components/Products/ProductList/ProductList';
-let product = (id)=>({
-    "id": id,
-    "ownerId": 723,
-    "title": "Product with to images",
-    "description": "Product with to images",
-    "photos": [
-        "https://res.cloudinary.com/olehlavryk/image/upload/v1604217622/apiko_upload/jvhiqha9amdaw55pwxpi.jpg",
-        "https://res.cloudinary.com/olehlavryk/image/upload/v1604217624/apiko_upload/q7tvxfaz0vs3nbzsoyw6.jpg"
-    ],
-    "location": "CH",
-    "price": 200,
-    "saved": false,
-    "createdAt": "2020-11-01T08:00:26.183Z",
-    "updatedAt": "2020-11-01T08:00:26.183Z"
-})
-const products = [];
-for(let i = 1; i < 11; ++i)
-    products.push(product(i))
-function BrowseScreen() {
+import { observer } from 'mobx-react';
+import { alert } from '../../utils/alert';
+import { useStore } from '../../stores/createStore';
 
-    const onPressItem= useCallback((id)=>{
+function BrowseScreen() {
+    const store = useStore();
+
+    useEffect(() => {
+        store.products.latestProducts.fetch
+            .run()
+            //.then(() => alert('success'))
+            .catch((err) => alert(err));
+    }, []);
+
+    const onPressItem = useCallback((id) => {
         console.log(id);
-    },[]);
+    }, []);
 
     return (
         <View style={s.container}>
-            <ProductList products={products} onPressItem={onPressItem} />
+            <Text>{store.products.latestProducts.items.length}</Text>
+            <ProductList
+                store={store.products.latestProducts}
+                onPressItem={onPressItem}
+            />
         </View>
-    )
+    );
 }
 
-export  default BrowseScreen;
+export default observer(BrowseScreen);

@@ -1,55 +1,55 @@
 import { StyleSheet } from 'react-native';
-import color from '../../styles/color'
+import color from '../../styles/color';
 export default StyleSheet.create({
     container: {
         backgroundColor: color.background,
         paddingHorizontal: 20,
         flex: 1,
-        justifyContent:"space-between"
+        justifyContent: 'space-between',
     },
-    bottom:{
+    bottom: {
         backgroundColor: color.white,
         height: 60,
         flexDirection: 'row',
-        alignItems: "center",
-        justifyContent: "space-between",
+        alignItems: 'center',
+        justifyContent: 'space-between',
     },
-    bottomText:{
-        flexWrap: "wrap",
+    bottomText: {
+        flexWrap: 'wrap',
         flexDirection: 'row',
         marginRight: 16,
-        alignItems: "center",
+        alignItems: 'center',
     },
     bottomInfo: {
-        fontStyle: "normal",
-        fontWeight: "normal",
+        fontStyle: 'normal',
+        fontWeight: 'normal',
         fontSize: 14,
         color: color.gray,
     },
-    redirect:{
+    redirect: {
         height: 60,
-        justifyContent:'center',
+        justifyContent: 'center',
     },
-    redirectText:{
-        fontStyle: "normal",
-        fontWeight: "700",
+    redirectText: {
+        fontStyle: 'normal',
+        fontWeight: '700',
         fontSize: 14,
         color: color.primary,
-        textTransform:"uppercase",
+        textTransform: 'uppercase',
     },
-    button:{
+    button: {
         width: 73,
         height: 44,
         justifyContent: 'center',
-        alignItems:'center',
+        alignItems: 'center',
         backgroundColor: color.primary,
         borderRadius: 44,
     },
-    btnText:{
+    btnText: {
         color: color.white,
         fontSize: 14,
         lineHeight: 21,
-        fontWeight: "500",
-        textTransform:"uppercase",
+        fontWeight: '500',
+        textTransform: 'uppercase',
     },
-})
+});

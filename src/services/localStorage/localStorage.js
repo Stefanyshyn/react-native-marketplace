@@ -7,21 +7,20 @@ export const NAMES = {
 
 /****************** TOKEN **************************/
 
-export const getToken =  async ()=>{
+export const getToken = async () => {
     let token;
-    token = await  AsyncStorage.getItem(NAMES.TOKEN);
+    token = await AsyncStorage.getItem(NAMES.TOKEN);
     return token;
-}
+};
 
-export const removeToken = async ()=>{
+export const removeToken = async () => {
     return await AsyncStorage.removeItem(NAMES.TOKEN);
-}
+};
 
 export const setToken = async (token) => {
     let json = JSON.stringify(token);
     await AsyncStorage.setItem(NAMES.TOKEN, json);
-
-}
+};
 
 // /****************** PERSIST **************************/
 

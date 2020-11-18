@@ -1,16 +1,16 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    fillAll:{
+    fillAll: {
         flex: 1,
     },
-    center:{
+    center: {
         alignItems: 'center',
         justifyContent: 'center',
     },
-    fontSize:{
-        fontSize: 14
-    }
-})
+    fontSize: {
+        fontSize: 14,
+    },
+});
 
 export default styles;

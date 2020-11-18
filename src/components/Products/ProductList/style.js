@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 8
+        paddingHorizontal: 8,
     },
-    columnWrapperStyle:{
-        justifyContent:'space-between',
-    }
-})
+    columnWrapperStyle: {
+        justifyContent: 'space-between',
+    },
+});

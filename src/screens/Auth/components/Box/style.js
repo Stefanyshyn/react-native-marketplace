@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import color from '../../../../styles/color'
+import color from '../../../../styles/color';
 export default StyleSheet.create({
     container: {
         fontStyle: 'normal',
@@ -7,11 +7,10 @@ export default StyleSheet.create({
         fontSize: 12,
         lineHeight: 18,
     },
-    error:{
+    error: {
         color: color.error,
     },
     info: {
         color: color.info,
-
-    }
-})
+    },
+});

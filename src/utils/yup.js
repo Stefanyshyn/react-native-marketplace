@@ -7,10 +7,10 @@ function equalTo(ref, msg) {
         // eslint-disable-next-line no-template-curly-in-string
         message: msg || '${path} must be the same as ${reference}',
         params: {
-        reference: ref.path,
+            reference: ref.path,
         },
         test: function (value) {
-        return value === this.resolve(ref);
+            return value === this.resolve(ref);
         },
     });
 }

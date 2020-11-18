@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import color from '../../../../styles/color'
+import color from '../../../../styles/color';
 export default StyleSheet.create({
-    inputWrapper:{
-        marginTop:20,
+    inputWrapper: {
+        marginTop: 20,
         borderColor: color.white,
     },
-    labelInput:{
+    labelInput: {
         position: 'absolute',
         top: -12,
         left: 16,
@@ -23,7 +23,7 @@ export default StyleSheet.create({
         elevation: 0,
         zIndex: 1,
     },
-    input:{
+    input: {
         backgroundColor: color.white,
         height: 44,
         paddingHorizontal: 10,
@@ -36,16 +36,16 @@ export default StyleSheet.create({
         fontStyle: 'normal',
         fontWeight: 'normal',
         fontSize: 16,
-        justifyContent: "center",
+        justifyContent: 'center',
         color: color.inputText,
     },
-    focusedInput:{
+    focusedInput: {
         borderColor: color.primary,
     },
-    errInput:{
+    errInput: {
         borderColor: color.error,
     },
-    errLable:{
-        color: color.error
+    errLable: {
+        color: color.error,
     },
-})
+});
