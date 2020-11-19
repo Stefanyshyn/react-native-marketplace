@@ -22,7 +22,7 @@ function ProductList({ store, ...props }) {
                 store.fetchMore.run();
             }}
             data={items}
-            ListFooterComponent={() => <ListFooter />}
+            ListFooterComponent={() => <ListFooter fetch={store.fetchMore}/>}
             ListEmptyComponent={() => <Text>Empty</Text>}
             refreshing={store.fetch.isLoading}
             initialNumToRender={8}
