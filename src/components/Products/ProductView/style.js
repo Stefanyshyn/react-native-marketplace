@@ -7,14 +7,13 @@ export default StyleSheet.create({
         width: '49.5%',
         height: 209,
         overflow: 'hidden',
+        backgroundColor: color.white,
     },
     photo: {
         height: 148,
-        backgroundColor: color.background,
     },
     infoWrapper: {
         flex: 1,
-        backgroundColor: color.white,
     },
     title: {
         marginLeft: 12,

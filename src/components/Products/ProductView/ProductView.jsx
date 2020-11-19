@@ -3,32 +3,38 @@ import { Image, Text, View } from 'react-native';
 import s from './style';
 import Touchable from '../../Touchable/Touchable';
 import { observer } from 'mobx-react';
+import noPhoto from '../../../../assets/no-photo.png';
+const noPhotoUri = Image.resolveAssetSource(noPhoto).uri;
 
-function ProductView({ item: product, rootProps }) {
-    const { onPressItem } = rootProps;
-    
+const ProductView = ({ item }) => {
+    const onPressItem = () => {};
+
     const handleSave = useCallback(() => {
-        console.log('save', product.id);
+        console.log('save', item.id);
     }, []);
 
     return (
         <Touchable
             style={s.container}
-            onPress={() => onPressItem(product.id)}
+            onPress={() => onPressItem(item.id)}
         >
             <Image
                 style={s.photo}
                 source={{
-                    uri: Array.isArray(product.photos) && product.photos.length ? product.photos[0]: 'assets:/no-photo.png',
+                    uri:
+                        Array.isArray(item.photos) &&
+                        item.photos.length
+                            ? item.photos[0]
+                            : noPhotoUri,
                 }}
             />
             <View style={s.infoWrapper}>
                 <Text numberOfLines={1} style={s.title}>
-                    {product.title}
+                    {item.title}
                 </Text>
                 <View style={s.bottom}>
                     <Text numberOfLines={1} style={s.price}>
-                        ${product.price}
+                        ${item.price}
                     </Text>
                     <Text style={s.save} onPress={handleSave}>
                         {' '}
@@ -38,5 +44,5 @@ function ProductView({ item: product, rootProps }) {
             </View>
         </Touchable>
     );
-}
+};
 export default observer(ProductView);
