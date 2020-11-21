@@ -16,6 +16,6 @@ export default StyleSheet.create({
         color: color.gray,
     },
     center: {
-        textAlign: "center",
-    }
+        textAlign: 'center',
+    },
 });

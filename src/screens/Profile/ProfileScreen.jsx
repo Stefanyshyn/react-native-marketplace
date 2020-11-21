@@ -8,10 +8,10 @@ import { alert } from '../../utils/alert';
 import NavigationService from '../../services/NavigationService';
 import { screens } from '../screens';
 import { StyleSheet } from 'react-native';
-const ss=  StyleSheet.create({
+import color from '../../styles/color';
+const ss = StyleSheet.create({
     c: {
         position: 'absolute',
-        
     },
     w: {
         color: color.white,
@@ -33,13 +33,12 @@ function ProfileScreen() {
     return (
         <View style={s.container}>
             <View style={s.c}>
-            <View style={s.w}>
-                <Touchable onPress={console.log('lol')}>
-                    <Text>Lol</Text>
-                </Touchable>
-                
+                <View style={s.w}>
+                    <Touchable onPress={console.log('lol')}>
+                        <Text>Lol</Text>
+                    </Touchable>
                 </View>
-                </View>
+            </View>
         </View>
     );
 }

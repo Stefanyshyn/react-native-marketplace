@@ -18,6 +18,9 @@ class NavigationService {
             }),
         );
     }
+    goBack() {
+        this._navigation.dispatch(NavigationActions.back());
+    }
 
     navigateToHome() {
         this.navigate(screens.MainApp);
