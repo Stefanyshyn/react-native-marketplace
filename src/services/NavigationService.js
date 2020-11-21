@@ -22,15 +22,6 @@ class NavigationService {
     navigateToHome() {
         this.navigate(screens.MainApp);
     }
-
-    navigateStack(routeName, params) {
-        this._navigation.dispatch(
-            StackActions.navigate({
-                routeName: routeName,
-                params,
-            }),
-        );
-    }
 }
 
 export default new NavigationService();

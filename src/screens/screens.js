@@ -9,6 +9,7 @@ export const screens = {
     Profile: 'Profile',
 
     CreatePostModal: 'CreatePostModal',
+    CreatePostTab: 'CreatePostTab',
     CreatePost: 'CreatePost',
 
     // Auth

@@ -7,6 +7,17 @@ import { observer } from 'mobx-react';
 import { alert } from '../../utils/alert';
 import NavigationService from '../../services/NavigationService';
 import { screens } from '../screens';
+import { StyleSheet } from 'react-native';
+const ss=  StyleSheet.create({
+    c: {
+        position: 'absolute',
+        
+    },
+    w: {
+        color: color.white,
+        fontWeight: '500',
+    },
+});
 
 function ProfileScreen() {
     const store = useStore();
@@ -21,10 +32,14 @@ function ProfileScreen() {
     const { isLoggedIn } = store.auth;
     return (
         <View style={s.container}>
-            <Text>{`Profile ${isLoggedIn}`}</Text>
-            <Touchable onPress={onLogout} style={s.button}>
-                <Text style={s.buttonTitle}>Logout</Text>
-            </Touchable>
+            <View style={s.c}>
+            <View style={s.w}>
+                <Touchable onPress={console.log('lol')}>
+                    <Text>Lol</Text>
+                </Touchable>
+                
+                </View>
+                </View>
         </View>
     );
 }
