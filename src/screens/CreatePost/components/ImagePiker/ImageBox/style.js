@@ -15,7 +15,10 @@ export default StyleSheet.create({
     },
     close: {
         position: 'absolute',
-        right: 8,
-        top: 8,
+        right: 2,
+        top: 2,
+    },
+    image: {
+        flex: 1,
     },
 });

@@ -10,7 +10,6 @@ import ImageBox from './ImageBox/ImageBox';
 
 function ImagePiсker({ append, remove, photos }) {
     const actionRef = useRef();
-
     const handleOpenActionSheet = useCallback(async () => {
         await actionRef.current.show();
     });
@@ -38,7 +37,6 @@ function ImagePiсker({ append, remove, photos }) {
                 Permissions.CAMERA_ROLL,
             );
             const result = await ImagePicker.launchImageLibraryAsync();
-            console.log(result);
             if (
                 permission.status !== 'granted' &&
                 !result.cancelled
@@ -46,7 +44,7 @@ function ImagePiсker({ append, remove, photos }) {
                 append([...photos, result.uri]);
             }
         } catch (err) {
-            Alert.alert('Error', JSON.stringify(err));
+            Alert.alert('Lol', JSON.stringify(err));
         }
     };
     const handleChoose = useCallback((index) => {
@@ -65,6 +63,13 @@ function ImagePiсker({ append, remove, photos }) {
             showsHorizontalScrollIndicator={false}
             horizontal={true}
         >
+            {photos.map((photo, index) => (
+                <ImageBox
+                    key={photo}
+                    remove={() => remove(index)}
+                    photo={photo}
+                />
+            ))}
             <Touchable
                 style={[s.box, s.boxAppend]}
                 onPress={handleOpenActionSheet}

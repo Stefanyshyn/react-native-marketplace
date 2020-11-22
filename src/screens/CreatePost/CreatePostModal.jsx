@@ -27,7 +27,9 @@ function CreatePostScreen() {
                     initialValues={{
                         title: '',
                         description: '',
-                        photos: [],
+                        photos: [
+                            'https://www.pics4learning.com/images/pics-banner1-1300.jpg',
+                        ],
                         price: '',
                         location: '',
                     }}
@@ -94,12 +96,12 @@ function CreatePostScreen() {
                                             ),
                                         )
                                     }
-                                    append={(photos) =>
+                                    append={(photos) => {
                                         formik.setFieldValue(
                                             'photos',
                                             photos,
-                                        )
-                                    }
+                                        );
+                                    }}
                                     photos={formik.values.photos}
                                 ></ImagePiker>
                             </View>
