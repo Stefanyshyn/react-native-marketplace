@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import color from './color';
 
 const styles = StyleSheet.create({
     fillAll: {
@@ -10,6 +11,11 @@ const styles = StyleSheet.create({
     },
     fontSize: {
         fontSize: 14,
+    },
+    inputBorder: {
+        borderColor: color.inputBorder,
+        borderWidth: 1,
+        borderRadius: 4,
     },
 });
 

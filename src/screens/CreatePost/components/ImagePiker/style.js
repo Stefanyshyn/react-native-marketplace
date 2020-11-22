@@ -14,6 +14,17 @@ export default StyleSheet.create({
         borderRightWidth: 0,
         backgroundColor: color.white,
     },
+    box: {
+        width: 44,
+        height: 44,
+
+        marginHorizontal: 8,
+        backgroundColor: color.white,
+        borderColor: color.inputBorder,
+        borderStyle: 'solid',
+        borderWidth: 1,
+        borderRadius: 4,
+    },
     boxAppend: {
         padding: 0,
         justifyContent: 'center',
