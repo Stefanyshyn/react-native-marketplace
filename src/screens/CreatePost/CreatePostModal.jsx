@@ -9,7 +9,7 @@ import { alert } from '../../utils/alert';
 import { TextInput } from 'react-native-gesture-handler';
 import { Formik } from 'formik';
 import * as Y from 'yup';
-import ImagePiker from './components/ImagePiker/ImagePiker';
+import ImagePiker from './components/ImagePiker/ImagePiсker';
 import PriceBar from './components/PriceBar/PriceBar';
 
 function setInputProps(formik, nameField) {
@@ -77,10 +77,21 @@ function CreatePostScreen() {
                         <View>
                             <Text style={s.label}>PHOTOS</Text>
                             <ImagePiker
-                                field={setInputProps(
-                                    formik,
-                                    'photos',
-                                )}
+                                remove={(index) =>
+                                    formik.setFieldValue(
+                                        'photos',
+                                        formik.values.photos.filter(
+                                            (_, i) => index !== i,
+                                        ),
+                                    )
+                                }
+                                append={(photos) =>
+                                    formik.setFieldValue(
+                                        'photos',
+                                        photos,
+                                    )
+                                }
+                                photos={formik.values.photos}
                             ></ImagePiker>
                         </View>
                         <View>
