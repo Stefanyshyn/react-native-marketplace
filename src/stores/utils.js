@@ -25,6 +25,7 @@ export function asyncModel(thunk, auto = true) {
                             error.response.data?.error);
                 else store.errorMessage = '' + error;
 
+                store.isLoading = false;
                 store.isError = true;
             },
             run(...args) {

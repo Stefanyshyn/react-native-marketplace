@@ -11,6 +11,10 @@ import { Formik } from 'formik';
 import * as Y from 'yup';
 import ImagePiker from './components/ImagePiker/ImagePiсker';
 import PriceBar from './components/PriceBar/PriceBar';
+import { useStore } from '../../stores/createStore';
+import { observer } from 'mobx-react';
+import Box from '../../components/Box/Box';
+import { getSnapshot } from 'mobx-state-tree';
 
 function setInputProps(formik, nameField) {
     return {
@@ -19,7 +23,8 @@ function setInputProps(formik, nameField) {
         value: formik.values.description,
     };
 }
-function CreatePostScreen() {
+function CreatePostScreen({ navigation }) {
+    const store = useStore();
     return (
         <ScrollView>
             <KeyboardAvoidingView style={s.container}>
@@ -47,99 +52,148 @@ function CreatePostScreen() {
                         price: Y.number()
                             .max(999999999999, 'Price is too long!!')
                             .required('Required'),
-                        photos: Y.array().required('Required'),
+                        photos: Y.array(),
                     })}
+                    onSubmit={async (values) => {
+                        await store.products.createPostFlow.run(
+                            values,
+                        );
+                        if (!store.products.createPostFlow.isError)
+                            NavigationService.goBack();
+                    }}
                 >
-                    {(formik) => (
-                        <React.Fragment>
-                            <View>
-                                <Text
-                                    style={[
-                                        s.label,
-                                        { marginTop: 0 },
-                                    ]}
-                                >
-                                    KEY INFORMATION
-                                </Text>
-                                <TextInput
-                                    style={s.input}
-                                    placeholder="Title"
-                                    {...setInputProps(
-                                        formik,
-                                        'title',
+                    {(formik) => {
+                        if (!navigation.getParam('onSubmit')) {
+                            navigation.setParams({
+                                onSubmit: () => formik.submitForm(),
+                            });
+                        }
+                        console.log(formik.errors);
+                        return (
+                            <React.Fragment>
+                                <View>
+                                    <Text
+                                        style={[
+                                            s.label,
+                                            { marginTop: 0 },
+                                        ]}
+                                    >
+                                        KEY INFORMATION
+                                    </Text>
+                                    <TextInput
+                                        style={s.input}
+                                        placeholder="Title"
+                                        {...setInputProps(
+                                            formik,
+                                            'title',
+                                        )}
+                                    />
+                                    {formik.touched.title &&
+                                        formik.errors.title && (
+                                            <Box
+                                                style={s.box}
+                                                text={
+                                                    formik.errors
+                                                        .title
+                                                }
+                                                type="error"
+                                            />
+                                        )}
+                                    <TextInput
+                                        style={[
+                                            s.input,
+                                            formik.values.description
+                                                ? s.inputTextAlignTop
+                                                : '',
+                                        ]}
+                                        placeholder="Description"
+                                        multiline={true}
+                                        numberOfLines={4}
+                                        {...setInputProps(
+                                            formik,
+                                            'description',
+                                        )}
+                                    />
+                                </View>
+                                <View>
+                                    <Text style={s.label}>
+                                        PHOTOS
+                                    </Text>
+                                    <ImagePiker
+                                        remove={(index) =>
+                                            formik.setFieldValue(
+                                                'photos',
+                                                formik.values.photos.filter(
+                                                    (_, i) =>
+                                                        index !== i,
+                                                ),
+                                            )
+                                        }
+                                        append={(photos) => {
+                                            formik.setFieldValue(
+                                                'photos',
+                                                photos,
+                                            );
+                                        }}
+                                        photos={formik.values.photos}
+                                    ></ImagePiker>
+                                </View>
+                                <View>
+                                    <Text
+                                        style={s.label}
+                                        placeholder="Price"
+                                    >
+                                        PRICE
+                                    </Text>
+                                    <PriceBar
+                                        onChange={(value) =>
+                                            formik.handleChange(
+                                                'price',
+                                            )(value)
+                                        }
+                                        price={formik.values.price}
+                                    />
+                                </View>
+                                {formik.touched.price &&
+                                    formik.errors.price && (
+                                        <Box
+                                            style={s.box}
+                                            text={formik.errors.price}
+                                            type="error"
+                                        />
                                     )}
-                                />
-                                <TextInput
-                                    style={[
-                                        s.input,
-                                        formik.values.description
-                                            ? s.inputTextAlignTop
-                                            : '',
-                                    ]}
-                                    placeholder="Description"
-                                    multiline={true}
-                                    numberOfLines={4}
-                                    {...setInputProps(
-                                        formik,
-                                        'description',
+                                <View>
+                                    <Text style={s.label}>
+                                        LOCATION
+                                    </Text>
+                                    <TextInput
+                                        style={s.input}
+                                        placeholder="Location"
+                                        {...setInputProps(
+                                            formik,
+                                            'location',
+                                        )}
+                                    />
+                                </View>
+                                {formik.touched.location &&
+                                    formik.errors.location && (
+                                        <Box
+                                            style={s.box}
+                                            text={
+                                                formik.errors.location
+                                            }
+                                            type="error"
+                                        />
                                     )}
-                                />
-                            </View>
-                            <View>
-                                <Text style={s.label}>PHOTOS</Text>
-                                <ImagePiker
-                                    remove={(index) =>
-                                        formik.setFieldValue(
-                                            'photos',
-                                            formik.values.photos.filter(
-                                                (_, i) => index !== i,
-                                            ),
-                                        )
-                                    }
-                                    append={(photos) => {
-                                        formik.setFieldValue(
-                                            'photos',
-                                            photos,
-                                        );
-                                    }}
-                                    photos={formik.values.photos}
-                                ></ImagePiker>
-                            </View>
-                            <View>
-                                <Text
-                                    style={s.label}
-                                    placeholder="Price"
-                                >
-                                    PRICE
-                                </Text>
-                                <PriceBar
-                                    onChange={(value) =>
-                                        formik.handleChange('price')(
-                                            value,
-                                        )
-                                    }
-                                    price={formik.values.price}
-                                />
-                            </View>
-                            <View>
-                                <Text style={s.label}>LOCATION</Text>
-                                <TextInput
-                                    style={s.input}
-                                    placeholder="Location"
-                                    {...setInputProps(
-                                        formik,
-                                        'location',
-                                    )}
-                                />
-                            </View>
-                        </React.Fragment>
-                    )}
+                            </React.Fragment>
+                        );
+                    }}
                 </Formik>
             </KeyboardAvoidingView>
         </ScrollView>
     );
 }
-CreatePostScreen.navigationOptions = {
+CreatePostScreen.navigationOptions = ({ navigation }) => ({
     headerTitleStyle: s.headerTitleStyle,
     headerLeft: () => (
         <Touchable
@@ -156,11 +210,14 @@ CreatePostScreen.navigationOptions = {
     headerRight: () => (
         <Touchable
             style={s.headerRight}
-            onPress={() => alert('post')}
+            onPress={() => {
+                const onSubmit = navigation.getParam('onSubmit');
+                onSubmit && onSubmit();
+            }}
         >
             <Text>Post</Text>
         </Touchable>
     ),
-};
+});
 
-export default CreatePostScreen;
+export default observer(CreatePostScreen);

@@ -3,6 +3,7 @@ import { API_URL } from '../../constants/url';
 import { tokenStore } from '../localStorage';
 
 const urls = {
+    createPost: '/products',
     fetchLatest: '/products/latest',
     fetchLatestMore: ({ from, limit }) =>
         `/products/latest?limit=${limit}&from=${from}`,
@@ -34,7 +35,17 @@ const auth = {
         await this.init();
         return axios.get(urls.fetchLatestMore({ limit, from }));
     },
-
+    async createPost({ title, descrition, photos, price, location }) {
+        await this.init();
+        console.log(axios.defaults.headers.common.Authorization);
+        return axios.post(urls.createPost, {
+            title,
+            descrition,
+            photos,
+            price,
+            location,
+        });
+    },
     _setTokenToAxios(token) {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
     },

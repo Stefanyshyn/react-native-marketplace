@@ -29,6 +29,7 @@ function login() {
         const { data } = await api.auth.login(_email, _password);
 
         await api.auth.setToken(data.token);
+        console.log(1, data.token);
 
         root.viewer.setViewer(data.user);
         root.auth.setIsLoggedIn(true);

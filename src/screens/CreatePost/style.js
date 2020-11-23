@@ -45,4 +45,7 @@ export default StyleSheet.create({
         marginTop: 8,
         marginHorizontal: 16,
     },
+    box: {
+        marginLeft: 16,
+    },
 });

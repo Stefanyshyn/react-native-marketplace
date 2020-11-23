@@ -8,8 +8,8 @@ import CreatePostNavigator from './CreatePostNavigator';
 
 const Stack = createStackNavigator(
     {
-        [screens.CreatePostModal]: CreatePostNavigator,
         [screens.App]: AppNavigator,
+        [screens.CreatePostModal]: CreatePostNavigator,
     },
     {
         mode: 'modal',

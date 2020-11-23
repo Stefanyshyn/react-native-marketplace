@@ -1,4 +1,4 @@
-import { NavigationActions, StackActions } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { screens } from '../screens/screens';
 
 class NavigationService {
@@ -18,6 +18,7 @@ class NavigationService {
             }),
         );
     }
+
     goBack() {
         this._navigation.dispatch(NavigationActions.back());
     }

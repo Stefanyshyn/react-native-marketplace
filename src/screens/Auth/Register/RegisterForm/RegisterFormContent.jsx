@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { useStore } from '../../../../stores/createStore';
 import Input from '../../components/Input/Input';
-import Box from '../../components/Box/Box';
+import Box from '../../../../components/Box/Box';
 import { observer } from 'mobx-react';
 
 function RegisterFormContent({ formik }) {
