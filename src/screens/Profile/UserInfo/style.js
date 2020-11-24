@@ -3,7 +3,6 @@ import color from '../../../styles/color';
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
         height: 153,
         width: '100%',
         backgroundColor: color.white,
