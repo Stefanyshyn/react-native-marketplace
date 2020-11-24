@@ -1,31 +1,16 @@
-import React, { useCallback } from 'react';
-import { Text, View } from 'react-native';
-import Touchable from '../../components/Touchable/Touchable';
+import React from 'react';
+import { View } from 'react-native';
 import s from './style';
-import { useStore } from '../../stores/createStore';
-import { observer } from 'mobx-react';
-import { alert } from '../../utils/alert';
-import NavigationService from '../../services/NavigationService';
-import { screens } from '../screens';
+import UserInfo from './UserInfo/UserInfo';
+import OwnProduct from './OwnProduct/OwnProduct';
 
 function ProfileScreen() {
-    const store = useStore();
-    const onLogout = useCallback(() => {
-        store.auth.logoutFlow
-            .run()
-            .then(() => {
-                NavigationService.navigate(screens.Auth);
-            })
-            .catch((err) => alert(err));
-    }, []);
-    const { isLoggedIn } = store.auth;
     return (
         <View style={s.container}>
-            <Touchable onPress={onLogout}>
-                <Text>Lol</Text>
-            </Touchable>
+            <UserInfo />
+            <OwnProduct />
         </View>
     );
 }
 
-export default observer(ProfileScreen);
+export default ProfileScreen;
