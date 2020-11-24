@@ -1,6 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
-
-const { Platform } = require('react-native');
+import { Platform, StatusBar } from 'react-native';
+import { isIphoneX } from 'react-native-iphone-x-helper';
 
 const isAndroid = Platform.OS === 'android';
 const iosStatusBarHeight = isIphoneX() ? 34 : 20;

@@ -1,9 +1,6 @@
 import { StyleSheet } from 'react-native';
-import color from '../../styles/color';
+import color from '../../../../styles/color';
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-    },
     searchWrapper: {
         flex: 1,
         flexDirection: 'row',
@@ -26,7 +23,19 @@ export default StyleSheet.create({
         lineHeight: 24,
         width: '100%',
     },
-    filterIcon: {
+    searchButton: {
+        marginLeft: 16,
+        height: 36,
         paddingHorizontal: 16,
+        borderRadius: 8,
+        backgroundColor: color.primary,
+        justifyContent: 'center',
+    },
+    textSearchButton: {
+        fontStyle: 'normal',
+        fontWeight: 'normal',
+        fontSize: 16,
+        lineHeight: 24,
+        color: color.white,
     },
 });

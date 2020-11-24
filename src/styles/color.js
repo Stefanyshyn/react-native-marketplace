@@ -9,4 +9,5 @@ export default {
     inputBorder: '#D6D6D6',
     error: '#FF4060',
     info: '#A0A4B1',
+    headerSearch: '#F8F9FB',
 };

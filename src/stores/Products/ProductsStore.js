@@ -1,10 +1,12 @@
 import { types as t } from 'mobx-state-tree';
 import api from '../../services/api';
 import LatestProductsStore from './LatestProductsStore';
+import SearchProductsStore from './SearchProductsStore';
 import { ProductSchema } from '../schemas';
 import { asyncModel } from '../utils';
 const ProductStore = t.model('ProductStore', {
     latestProducts: t.optional(LatestProductsStore, {}),
+    searchProducts: t.optional(SearchProductsStore, {}),
 
     createPostFlow: asyncModel(createPost),
 });

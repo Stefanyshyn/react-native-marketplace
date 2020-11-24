@@ -6,7 +6,7 @@ import ListFooter from '../ListFooter/ListFooter';
 import { observer } from 'mobx-react';
 import s from './style';
 
-function ProductList({ store, ...props }) {
+function ProductList({ store, fetchMore, fetch, ...props }) {
     const items = store.items.slice();
     return (
         <FlatList
@@ -19,17 +19,17 @@ function ProductList({ store, ...props }) {
             numColumns={2}
             onEndReachedThreshold={0.3}
             onEndReached={() => {
-                store.fetchMore.run();
+                fetchMore.run();
             }}
             data={items}
             ListFooterComponent={() => (
-                <ListFooter fetch={store.fetchMore} />
+                <ListFooter fetch={fetchMore} />
             )}
             ListEmptyComponent={() => <Text>Empty</Text>}
-            refreshing={store.fetch.isLoading}
+            refreshing={fetch.isLoading}
             initialNumToRender={8}
             onRefresh={() => {
-                store.fetch.run();
+                fetch.run();
             }}
         />
     );

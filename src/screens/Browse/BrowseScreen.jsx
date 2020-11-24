@@ -1,36 +1,31 @@
-import React, { useCallback, useEffect } from 'react';
-import { Text, View } from 'react-native';
-import NavigationService from '../../services/NavigationService';
-import { screens } from '../screens';
+import React, { useCallback } from 'react';
+import { View } from 'react-native';
 import s from './style';
-import ProductList from '../../components/Products/ProductList/ProductList';
 import { observer } from 'mobx-react';
-import { alert } from '../../utils/alert';
-import { useStore } from '../../stores/createStore';
+import Header from './components/Header/Header';
+import LatestProducts from './LatestProducts/LatestProducts';
+import SearchProducts from './SearchProducts/SearchProducts';
 
-function BrowseScreen() {
-    const store = useStore();
-
-    useEffect(() => {
-        store.products.latestProducts.fetch
-            .run()
-            //.then(() => alert('success'))
-            .catch((err) => alert(err));
-    }, []);
-
+function BrowseScreen({ navigation }) {
+    const isKeywords = !!navigation.getParam('isKeywords');
     const onPressItem = useCallback((id) => {
         console.log(id);
     }, []);
 
     return (
-        <View style={s.container}>
-            <Text>{store.products.latestProducts.items.length}</Text>
-            <ProductList
-                store={store.products.latestProducts}
-                onPressItem={onPressItem}
-            />
-        </View>
+        <React.Fragment>
+            <Header navigation={navigation} />
+            <View style={s.container}>
+                {isKeywords ? (
+                    <SearchProducts onPressItem={onPressItem} />
+                ) : (
+                    <LatestProducts onPressItem={onPressItem} />
+                )}
+            </View>
+        </React.Fragment>
     );
 }
-
+BrowseScreen.navigationOptions = {
+    headerShown: false,
+};
 export default observer(BrowseScreen);

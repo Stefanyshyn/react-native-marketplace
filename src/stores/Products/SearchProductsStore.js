@@ -6,17 +6,21 @@ import { LatestProductColllectionSchema } from '../schemas';
 import { useStore } from '../createStore';
 import { FETCH_SIZE } from '../../constants/products';
 
-const LatestProductsStore = types
-    .model('LatestProductsStore', {
+const SearchProductsStore = types
+    .model('SearchProductsStore', {
         items: types.array(types.reference(ProductModel)),
         hasNextProducts: true,
+        keywords: '',
 
-        fetch: asyncModel(fetch),
-        fetchMore: asyncModel(fetchMore, false),
+        search: asyncModel(search),
+        searchMore: asyncModel(searchMore, false),
     })
     .actions((store) => ({
         setItems(items) {
             store.items = items;
+        },
+        setKeywords(keywords) {
+            store.keywords = keywords;
         },
         setHasNextProducts(value) {
             store.hasNextProduct = !!value;
@@ -26,9 +30,11 @@ const LatestProductsStore = types
         },
     }));
 
-function fetch() {
+function search() {
     return async function fetchFlow(flow, store, root) {
-        const { data } = await api.products.fetchLatest();
+        const { data } = await api.products.searchProduct({
+            keywords: store.keywords,
+        });
         const result = flow.merge(
             data,
             LatestProductColllectionSchema,
@@ -40,34 +46,31 @@ function fetch() {
     };
 }
 
-function fetchMore() {
+function searchMore() {
     return async function fetchMoreFlow(flow, store, root) {
         if (
-            store.fetch.isLoading ||
+            store.search.isLoading ||
             flow.isLoading ||
             store.items.length === 0
         )
             return;
         try {
-            const lastItem = store.items[store.items.length - 1];
             flow.start();
-            const { data } = await api.products.fetchLatestMore({
-                from: lastItem.id,
+            const { data } = await api.products.searchProduct({
+                keywords: store.keywords,
+                offset: store.items.length,
                 limit: FETCH_SIZE,
             });
-
             const result = flow.merge(
                 data,
                 LatestProductColllectionSchema,
             );
-            store.setHasNextProducts(data.length === FETCH_SIZE);
 
-            //alert(Object.keys(getSnapshot(root.entities.products.collection)).length)
+            store.setHasNextProducts(data.length === FETCH_SIZE);
 
             store.append(result);
             flow.success();
         } catch (err) {
-            alert(err);
             flow.error(err);
         }
     };
@@ -77,4 +80,4 @@ export function useLatestProductsStore() {
     const store = useStore();
     return store.products.latestProducts;
 }
-export default LatestProductsStore;
+export default SearchProductsStore;
