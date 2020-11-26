@@ -24,12 +24,9 @@ const LoginStore = types
 
 function login() {
     return async function loginFlow(flow, store, root) {
-        let _email = 'testivan@q.q';
-        let _password = '12345678';
         const { data } = await api.auth.login(_email, _password);
 
         await api.auth.setToken(data.token);
-        console.log(1, data.token);
 
         root.viewer.setViewer(data.user);
         root.auth.setIsLoggedIn(true);

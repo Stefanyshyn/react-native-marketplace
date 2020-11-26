@@ -12,6 +12,7 @@ export const screens = {
     CreatePostTab: 'CreatePostTab',
     CreatePost: 'CreatePost',
 
+    Setting: 'Setting',
     // Auth
     Auth: 'Auth',
 

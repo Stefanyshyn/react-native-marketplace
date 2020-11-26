@@ -76,7 +76,6 @@ const AppNavigator = createBottomTabNavigator(
     },
     {
         tabBarComponent: CustomeTabBar,
-        initialRouteName: screens.ProfileTab,
     },
 );
 
