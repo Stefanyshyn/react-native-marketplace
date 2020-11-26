@@ -9,6 +9,7 @@ import color from '../styles/color';
 import CreatePostButton from './components/CreatePostButton';
 import { Text, View } from 'react-native';
 import CustomeTabBar from './components/CustomeTabBar';
+import { MaterialIcons } from '@expo/vector-icons';
 
 const AppNavigator = createBottomTabNavigator(
     {
@@ -45,8 +46,20 @@ const AppNavigator = createBottomTabNavigator(
             navigationOptions: {
                 tabBarIcon: ({ focused }) => {
                     if (focused)
-                        return <Icon name="bookmarkTabActive" />;
-                    return <Icon name="bookmarkTabInactive" />;
+                        return (
+                            <MaterialIcons
+                                name="person-outline"
+                                size={20}
+                                color={color.primary}
+                            />
+                        );
+                    return (
+                        <MaterialIcons
+                            name="person-outline"
+                            size={20}
+                            color="#A0A4B1"
+                        />
+                    );
                 },
                 tabBarLabel: ({ focused }) => (
                     <Text

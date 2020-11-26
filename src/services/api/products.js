@@ -3,6 +3,7 @@ import { API_URL } from '../../constants/url';
 import { tokenStore } from '../localStorage';
 
 const urls = {
+    fetchUserProducts: (id) => `/users/${id}/products`,
     search: '/products/search',
     createPost: '/products',
     fetchLatest: '/products/latest',
@@ -45,6 +46,9 @@ const auth = {
             price,
             location,
         });
+    },
+    fetchUserProducts(id) {
+        return axios.get(urls.fetchUserProducts(id));
     },
     async searchProduct(values) {
         //        await this.init();

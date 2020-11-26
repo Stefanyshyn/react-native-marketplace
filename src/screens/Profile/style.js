@@ -5,4 +5,8 @@ export default StyleSheet.create({
         backgroundColor: color.white,
         flex: 1,
     },
+    loadingContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 });

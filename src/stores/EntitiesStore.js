@@ -1,10 +1,12 @@
 import { getRoot, types } from 'mobx-state-tree';
 import { ProductsCollection } from './Products/ProductsCollection';
+import { UsersCollection } from './Users/UsersCollection';
 import { normalize } from 'normalizr';
 
 const EntitiesStore = types
     .model('EntitiesStore', {
         products: ProductsCollection,
+        users: UsersCollection,
     })
     .actions((store) => ({
         merge(entities) {

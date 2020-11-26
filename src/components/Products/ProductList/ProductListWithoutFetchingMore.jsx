@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, Text } from 'react-native';
 import ProductView from '../ProductView/ProductView';
+import ListFooter from '../ListFooter/ListFooter';
 import { observer } from 'mobx-react';
 import s from './style';
 
@@ -15,6 +16,7 @@ function ProductListWithoutFetchingMore({ store, fetch, ...props }) {
             )}
             keyExtractor={(item) => item.id}
             numColumns={2}
+            ListFooterComponent={() => <ListFooter fetch={fetch} />}
             data={items}
             ListEmptyComponent={() => <Text>Empty</Text>}
             refreshing={fetch.isLoading}

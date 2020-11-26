@@ -4,23 +4,25 @@ import { tokenStore } from '../localStorage';
 
 axios.defaults.baseURL = API_URL;
 const urls = {
-    getMe: '/api/account',
+    getMe: '/account',
+    fetchUser: (id) => `/users/${id}`,
 };
 
 const users = {
     async _setToken() {
         const token = await tokenStore.getToken();
-
-        if (!!token) {
-            axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-            return true;
-        } else return false;
+        axios.defaults.headers.common.Authorization = `Bearer ${token.slice(
+            1,
+            -1,
+        )}`;
     },
 
     async getMe() {
-        let isToken = await this._setToken();
-        if (!isToken) return;
-        await axios.get(urls.getMe);
+        await this._setToken();
+        return await axios.get(urls.getMe);
+    },
+    async fetchUser(id) {
+        await axios.get(fetchUser(id));
     },
 };
 

@@ -2,7 +2,7 @@ import { getSnapshot, types } from 'mobx-state-tree';
 import { ProductModel } from './ProductModel';
 import { asyncModel } from '../utils';
 import api from '../../services/api';
-import { LatestProductColllectionSchema } from '../schemas';
+import { SearchedProductColllectionSchema } from '../schemas';
 import { useStore } from '../createStore';
 import { FETCH_SIZE } from '../../constants/products';
 
@@ -37,7 +37,7 @@ function search() {
         });
         const result = flow.merge(
             data,
-            LatestProductColllectionSchema,
+            SearchedProductColllectionSchema,
         );
 
         store.setHasNextProducts(data.length === FETCH_SIZE);
@@ -63,7 +63,7 @@ function searchMore() {
             });
             const result = flow.merge(
                 data,
-                LatestProductColllectionSchema,
+                SearchedProductColllectionSchema,
             );
 
             store.setHasNextProducts(data.length === FETCH_SIZE);

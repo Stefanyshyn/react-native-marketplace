@@ -7,3 +7,11 @@ export const ProductSchema = new schema.Entity('products');
 
 export const LatestProductSchema = new schema.Entity('products');
 export const LatestProductColllectionSchema = [LatestProductSchema];
+
+export const SearchedProductSchema = new schema.Entity('products');
+export const SearchedProductColllectionSchema = [
+    SearchedProductSchema,
+];
+
+export const OwnProductSchema = new schema.Entity('products');
+export const OwnProductColllectionSchema = [OwnProductSchema];

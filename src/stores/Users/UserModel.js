@@ -1,4 +1,5 @@
 import { types } from 'mobx-state-tree';
+import OwnProductsStore from '../Products/OwnProductsStore';
 
 export const UserModel = types.model('UserModel', {
     id: types.identifierNumber,
@@ -9,4 +10,6 @@ export const UserModel = types.model('UserModel', {
     createdAt: types.string,
     updatedAt: types.string,
     email: types.maybe(types.string),
+
+    ownProducts: types.optional(OwnProductsStore, {}),
 });
